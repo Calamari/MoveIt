@@ -1,0 +1,53 @@
+<!--DOCTYPE html-->
+<html>
+  <head>
+    <title></title>
+    <script src="../moveit.js" type="text/javascript"></script>
+    <style type="text/css" media="screen">
+      #box1 {
+        background: red;
+        position: absolute;
+        left: 110px;
+        top: 50px;
+        width: 100px;
+        height: 100px;
+      }
+      #box2 {
+        background: green;
+        position: absolute;
+        left: 230px;
+        top: 0px;
+        width: 100px;
+        height: 100px;
+      }
+      #box3 {
+        background: blue;
+        position: absolute;
+        left: 350px;
+        top: 50px;
+        width: 100px;
+        height: 100px;
+      }
+      #plane {
+        position: absolute;
+        left: 10px;
+        top: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test</h1>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <img src="http://www.servclip.de/img/plane.gif"  id="plane" alt="">
+    <script>
+//      new MoveIt('box1').duration(4).ease('ease-in-out').moveTo(380, 300, function() { console.log("box1", this); });
+//      new MoveIt('box2', { useTransform: true }).duration(4).ease('ease-in-out').moveTo(500, 300, function() { console.log("box2", this); });
+      box = document.getElementById("box2"),
+      m = new MoveIt(box);
+      document.body.addEventListener('mousemove', function(event) {
+        m.moveTo(event.pageX, event.pageY);
+      });
+    </script>
+  </body>
+</html>
