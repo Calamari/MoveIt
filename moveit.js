@@ -13,6 +13,10 @@ window.MoveIt = (function(win, doc) {
       // some constants:
       HAS_3D        = 'WebKitCSSMatrix' in win && 'm11' in new WebKitCSSMatrix(),
       HAS_TRANSFORM = vendor + 'Transform' in document.documentElement.style,
+      HAS_TRANSITION_END = 'on' + vendor + 'transitionend' in win,
+
+      // check this in http://developer.mozilla.org/en/CSS/CSS_transitions#section_8
+      transitionEndName   = (vendor === 'Moz') ? 'transitionend' : vendor + 'TransitionEnd',
 
       transformJS         = vendor + 'Transform',
       transformDurationJS = vendor + 'TransitionDuration',
@@ -43,6 +47,15 @@ window.MoveIt = (function(win, doc) {
           || win.msCancelRequestAnimationFrame
           || clearTimeout;
       }()),
+
+      // Add Event Listener name detection
+      addEvent = function(element, eventName, callback) {
+        if (element.addEventListener) {
+          element.addEventListener(eventName, callback);
+        } else if (element.attachEvent) {
+          element.attachEvent(eventName, callback);
+        }
+      },
 
       getTranslationCoords = function(element) {
         var matrix = getComputedStyle(element, null)[transformJS].replace(/[^0-9-.,]/g, '').split(',');
@@ -98,7 +111,7 @@ window.MoveIt = (function(win, doc) {
     this.config = config || {};
   };
 
-  MoveIt.version = '0.0.9';
+  MoveIt.version = '0.0.10';
 
   /**
    * Sets duration of animation
@@ -143,12 +156,18 @@ window.MoveIt = (function(win, doc) {
   MoveIt.prototype.moveTo = function(x, y, callback) {
     var time = this.time || 0,
         self = this;
-    cb = function() { callback && +callback.call(self); };
+    cb = function() { callback && callback.call(self); };
     if (HAS_TRANSFORM && this.config.useTransform) {
       easing(this.element, this.easing || '');
       duration(this.element, time);
       translate(this.element, x, y);
-      setTimeout(cb, time*1000);
+      if (callback) {
+        if (HAS_TRANSITION_END) {
+          addEvent(this.element, transitionEndName, cb)
+        } else {
+          setTimeout(cb, time*1000);
+        }
+      }
     } else {
       moveWithLoop(this.element, x, y, time, cb);
     }

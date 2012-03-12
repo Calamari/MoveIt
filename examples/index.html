@@ -41,13 +41,13 @@
     <div id="box2"></div>
     <img src="http://www.servclip.de/img/plane.gif"  id="plane" alt="">
     <script>
-//      new MoveIt('box1').duration(4).ease('ease-in-out').moveTo(380, 300, function() { console.log("box1", this); });
-//      new MoveIt('box2', { useTransform: true }).duration(4).ease('ease-in-out').moveTo(500, 300, function() { console.log("box2", this); });
-      box = document.getElementById("box2"),
+      new MoveIt('box1').duration(4).ease('ease-in-out').moveTo(380, 300, function() { console.log("box1", this); });
+      new MoveIt('box2', { useTransform: true }).duration(4).ease('ease-in-out').moveTo(500, 300, function() { console.log("box2", this); });
+/**      box = document.getElementById("box2"),
       m = new MoveIt(box);
       document.body.addEventListener('mousemove', function(event) {
         m.moveTo(event.pageX, event.pageY);
-      });
+      });*/
     </script>
   </body>
 </html>
