@@ -184,6 +184,16 @@ window.MoveIt = (function(win, doc) {
     return this;
   };
 
+  MoveIt.prototype.addX = function(x) {
+    this.moveTo(getTranslationCoords(this.element).x + x, getTranslationCoords(this.element).y);
+    return this;
+  };
+
+  MoveIt.prototype.addY = function(y) {
+    this.moveTo(getTranslationCoords(this.element).x, getTranslationCoords(this.element).y + y);
+    return this;
+  };
+
   /**
    * Converts transformations to left, right positions
    */
