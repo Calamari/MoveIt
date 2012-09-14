@@ -155,8 +155,8 @@ window.MoveIt = (function(win, doc) {
    */
   MoveIt.prototype.moveTo = function(x, y, callback) {
     var time = this.time || 0,
-        self = this;
-    cb = function() { callback && callback.call(self); };
+        self = this,
+        cb   = function() { callback && callback.call(self); };
     if (HAS_TRANSFORM && this.config.useTransform) {
       easing(this.element, this.easing || '');
       duration(this.element, time);
