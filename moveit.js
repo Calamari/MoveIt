@@ -123,7 +123,7 @@ window.MoveIt = (function(win, doc) {
     }
   };
 
-  MoveIt.version = '0.0.13';
+  MoveIt.version = '0.0.14';
 
   /**
    * Sets duration of animation
@@ -214,6 +214,14 @@ window.MoveIt = (function(win, doc) {
   MoveIt.prototype.addY = function(y, callback) {
     this.moveTo(getTranslationCoords(this.element).x, getTranslationCoords(this.element).y + y, callback);
     return this;
+  };
+
+  /**
+   * Returns object with x and y position
+   * @return {Object}
+   */
+  MoveIt.prototype.position = function() {
+    return getTranslationCoords(this.element);
   };
 
   /**

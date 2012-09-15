@@ -2,7 +2,7 @@
 
 Very small JavaScript move / translation lib using animation frames and hardware acceleration through CSS3 for optimal performance
 
-**Version:** 0.0.13
+**Version:** 0.0.14
 
 
 ## Usage:
@@ -37,8 +37,12 @@ If CSS3 is used we can transform the CSS3 translation to normal left and top pos
 
 Get the actual move x and y positions:
 
-    mover.x();
-    mover.y();
+    mover.position(); // { x: 4, y: 42 }
+
+    //or
+
+    mover.x();        // 4
+    mover.y();        // 42
 
 
 ### Also allows chaining of methods:
