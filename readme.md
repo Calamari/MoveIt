@@ -2,7 +2,8 @@
 
 Very small JavaScript move / translation lib using animation frames and hardware acceleration through CSS3 for optimal performance
 
-**Version:** 0.0.12
+**Version:** 0.0.13
+
 
 ## Usage:
 
@@ -33,6 +34,11 @@ After finishing of the animation a callback can be fired:
 If CSS3 is used we can transform the CSS3 translation to normal left and top positioning after finishing the translation:
 
     mover.duration(3).moveTo(100, 100, mover.convertTransform);
+
+Get the actual move x and y positions:
+
+    mover.x();
+    mover.y();
 
 
 ### Also allows chaining of methods:

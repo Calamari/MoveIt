@@ -123,7 +123,7 @@ window.MoveIt = (function(win, doc) {
     }
   };
 
-  MoveIt.version = '0.0.12';
+  MoveIt.version = '0.0.13';
 
   /**
    * Sets duration of animation
@@ -191,11 +191,17 @@ window.MoveIt = (function(win, doc) {
   };
 
   MoveIt.prototype.x = function(x, callback) {
+    if (x === undef) {
+      return getTranslationCoords(this.element).x;
+    }
     this.moveTo(x, getTranslationCoords(this.element).y, callback);
     return this;
   };
 
   MoveIt.prototype.y = function(y, callback) {
+    if (y === undef) {
+      return getTranslationCoords(this.element).y;
+    }
     this.moveTo(getTranslationCoords(this.element).x, y, callback);
     return this;
   };
