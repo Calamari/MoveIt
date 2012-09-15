@@ -109,6 +109,9 @@ window.MoveIt = (function(win, doc) {
   var MoveIt = function(element, config) {
     this.element = typeof element === 'string' ? doc.getElementById(element) : element;
     this.config = config || {};
+    if (this.config.useTransforms === undef) {
+      this.config.useTransforms = true;
+    }
   };
 
   MoveIt.version = '0.0.10';
@@ -138,7 +141,7 @@ window.MoveIt = (function(win, doc) {
    * @param {Function}      callback Method to call on finish
    */
   MoveIt.prototype.move = function(x, y, callback) {
-    if (HAS_TRANSFORM && this.config.useTransform) {
+    if (HAS_TRANSFORM && this.config.useTransforms) {
       var from = getTranslationCoords(this.element);
     } else {
       var from = getPositionCoords(this.element);
@@ -157,7 +160,7 @@ window.MoveIt = (function(win, doc) {
     var time = this.time || 0,
         self = this,
         cb   = function() { callback && callback.call(self); };
-    if (HAS_TRANSFORM && this.config.useTransform) {
+    if (HAS_TRANSFORM && this.config.useTransforms) {
       easing(this.element, this.easing || '');
       duration(this.element, time);
       translate(this.element, x, y);
