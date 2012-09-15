@@ -2,7 +2,7 @@
 
 Very small JavaScript move / translation lib using animation frames and hardware acceleration through CSS3 for optimal performance
 
-**Version:** 0.0.9
+**Version:** 0.0.11
 
 ## Usage:
 

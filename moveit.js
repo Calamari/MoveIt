@@ -114,7 +114,7 @@ window.MoveIt = (function(win, doc) {
     }
   };
 
-  MoveIt.version = '0.0.10';
+  MoveIt.version = '0.0.11';
 
   /**
    * Sets duration of animation
