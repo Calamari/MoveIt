@@ -48,14 +48,7 @@ window.MoveIt = (function(win, doc) {
           || clearTimeout;
       }()),
 
-      // Add Event Listener name detection
-      addEvent = function(element, eventName, callback) {
-        if (element.addEventListener) {
-          element.addEventListener(eventName, callback);
-        } else if (element.attachEvent) {
-          element.attachEvent(eventName, callback);
-        }
-      },
+      addEvent, removeEvent,
 
       getTranslationCoords = function(element) {
         var matrix = getComputedStyle(element, null)[transformJS].replace(/[^0-9-.,]/g, '').split(',');
@@ -99,6 +92,22 @@ window.MoveIt = (function(win, doc) {
         return loop;
       };
 
+
+  if (window.addEventListener) {
+    addEvent = function(element, eventName, callback) {
+      element.addEventListener(eventName, callback);
+    };
+    removeEvent = function(element, eventName, callback) {
+      element.removeEventListener(eventName, callback);
+    };
+  } else if (document.attachEvent) {
+    addEvent = function(element, eventName, callback) {
+      element.attachEvent('on' + eventName, callback);
+    };
+    removeEvent = function(element, eventName, callback) {
+      element.removeEvent('on' + eventName, callback);
+    };
+  }
 
   /**
    * Creates Element MoveIt Instance
@@ -160,7 +169,10 @@ window.MoveIt = (function(win, doc) {
   MoveIt.prototype.moveTo = function(x, y, callback) {
     var time = this.time || 0,
         self = this,
-        cb   = function() { callback && callback.call(self); };
+        cb   = function() {
+          callback && callback.call(self);
+          HAS_TRANSITION_END && removeEvent(self.element, transitionEndName, cb);
+        };
     if (HAS_TRANSFORM && this.config.useTransforms) {
       easing(this.element, this.easing || '');
       duration(this.element, time);
