@@ -18,9 +18,9 @@ Setting a duration for all following translations:
 
     mover.duration(5);
 
-Creating a Move it Element using CSS3 2D and 3D transformations if available:
+Creating a Moveit Element using CSS3 2D and 3D transformations if available:
 
-    var mover = new MoveIt('myElement', { useTransform: true });
+    var mover = new MoveIt('myElement', { useTransforms: true });
 
 Sets an CSS3 transformation easing method to use in all following animations:
 
@@ -43,4 +43,4 @@ Moves the element with id=box1 to page coordinates x=380px and y=300px with easi
 
 Jumps to position left: 50px; top:50px; and moves steadily over 2 seconds to left: 150px
 
-    new MoveIt('box1').moveTo(50,50).duration(2).move(100, 0);
+    new MoveIt('box1').moveTo(50,50).duration(2).addX(100);

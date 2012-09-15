@@ -141,10 +141,11 @@ window.MoveIt = (function(win, doc) {
    * @param {Function}      callback Method to call on finish
    */
   MoveIt.prototype.move = function(x, y, callback) {
+    var form;
     if (HAS_TRANSFORM && this.config.useTransforms) {
-      var from = getTranslationCoords(this.element);
+      from = getTranslationCoords(this.element);
     } else {
-      var from = getPositionCoords(this.element);
+      from = getPositionCoords(this.element);
     }
     this.moveTo(from.x + x, from.y + y, callback);
     return this;
@@ -166,7 +167,7 @@ window.MoveIt = (function(win, doc) {
       translate(this.element, x, y);
       if (callback) {
         if (HAS_TRANSITION_END) {
-          addEvent(this.element, transitionEndName, cb)
+          addEvent(this.element, transitionEndName, cb);
         } else {
           setTimeout(cb, time*1000);
         }
