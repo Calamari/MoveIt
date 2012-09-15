@@ -114,7 +114,7 @@ window.MoveIt = (function(win, doc) {
     }
   };
 
-  MoveIt.version = '0.0.11';
+  MoveIt.version = '0.0.12';
 
   /**
    * Sets duration of animation
@@ -178,23 +178,23 @@ window.MoveIt = (function(win, doc) {
     return this;
   };
 
-  MoveIt.prototype.x = function(x) {
-    this.moveTo(x, getTranslationCoords(this.element).y);
+  MoveIt.prototype.x = function(x, callback) {
+    this.moveTo(x, getTranslationCoords(this.element).y, callback);
     return this;
   };
 
-  MoveIt.prototype.y = function(y) {
-    this.moveTo(getTranslationCoords(this.element).x, y);
+  MoveIt.prototype.y = function(y, callback) {
+    this.moveTo(getTranslationCoords(this.element).x, y, callback);
     return this;
   };
 
-  MoveIt.prototype.addX = function(x) {
-    this.moveTo(getTranslationCoords(this.element).x + x, getTranslationCoords(this.element).y);
+  MoveIt.prototype.addX = function(x, callback) {
+    this.moveTo(getTranslationCoords(this.element).x + x, getTranslationCoords(this.element).y, callback);
     return this;
   };
 
-  MoveIt.prototype.addY = function(y) {
-    this.moveTo(getTranslationCoords(this.element).x, getTranslationCoords(this.element).y + y);
+  MoveIt.prototype.addY = function(y, callback) {
+    this.moveTo(getTranslationCoords(this.element).x, getTranslationCoords(this.element).y + y, callback);
     return this;
   };
 

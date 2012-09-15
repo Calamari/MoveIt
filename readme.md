@@ -2,7 +2,7 @@
 
 Very small JavaScript move / translation lib using animation frames and hardware acceleration through CSS3 for optimal performance
 
-**Version:** 0.0.11
+**Version:** 0.0.12
 
 ## Usage:
 
@@ -41,6 +41,6 @@ Moves the element with id=box1 to page coordinates x=380px and y=300px with easi
 
     new MoveIt('box1').duration(4).ease('ease-in-out').moveTo(380, 300);
 
-Jumps to position left: 50px; top:50px; and moves steadily over 2 seconds to left: 150px
+Jumps to position left: 50px; top:50px; and moves steadily over 2 seconds to left: 150px, after finishing that it moves in 2 more seconds 100 px downwards
 
-    new MoveIt('box1').moveTo(50,50).duration(2).addX(100);
+    new MoveIt('box1').moveTo(50,50).duration(2).addX(100, function() { this.addY(100); });
