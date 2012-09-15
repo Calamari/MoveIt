@@ -203,7 +203,6 @@ window.MoveIt = (function(win, doc) {
   MoveIt.prototype.convertTransform = function() {
     var pos         = getPositionCoords(this.element),
         translation = getTranslationCoords(this.element);
-      console.log(translation, pos);
     this.element.style.left = (pos.x + translation.x) + 'px';
     this.element.style.top  = (pos.y + translation.y) + 'px';
     duration(this.element, 0);
